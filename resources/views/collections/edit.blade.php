@@ -12,25 +12,25 @@
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
             @include('partials.flash')
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 items-start">
 
             {{-- SEZIONE 1: Nome e descrizione --}}
             <div class="bg-white rounded-lg shadow-sm border border-gray-200">
-                <div class="px-8 py-6 border-b border-gray-100">
+                <div class="px-4 py-3 border-b border-gray-100">
                     <h3 class="font-semibold text-gray-800">Informazioni generali</h3>
                 </div>
-                <div class="p-8">
+                <div class="p-4">
                     <form method="POST" action="{{ route('collections.update', $collection) }}">
                         @csrf @method('PATCH')
 
-                        <div class="mb-5">
+                        <div class="mb-2">
                             <label class="block text-sm font-medium text-gray-700 mb-1">Nome *</label>
                             <input type="text" name="name" value="{{ old('name', $collection->name) }}" required
                                 class="w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                             @error('name') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
                         </div>
 
-                        <div class="mb-6">
+                        <div class="mb-2">
                             <label class="block text-sm font-medium text-gray-700 mb-1">Descrizione</label>
                             <textarea name="description" rows="3"
                                 class="w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">{{ old('description', $collection->description) }}</textarea>
@@ -51,7 +51,7 @@
 
             {{-- SEZIONE 2: Caratteristiche personalizzate --}}
             <div class="bg-white rounded-lg shadow-sm border border-gray-200">
-                <div class="px-8 py-6 border-b border-gray-100">
+                <div class="px-4 py-3 border-b border-gray-100">
                     <h3 class="font-semibold text-gray-800">Caratteristiche personalizzate</h3>
                     <p class="text-sm text-gray-500 mt-1">
                         Definisci i campi aggiuntivi che appariranno nel form di ogni oggetto di questa collezione.
@@ -62,7 +62,7 @@
                 @if ($collection->attributes->isNotEmpty())
                     <ul class="divide-y divide-gray-100">
                         @foreach ($collection->attributes as $attr)
-                            <li class="px-8 py-5">
+                            <li class="px-4 py-2">
                                 {{-- Riga di visualizzazione --}}
                                 <div class="flex items-center justify-between" id="view-{{ $attr->id }}">
                                     <div class="flex items-center gap-3">
@@ -130,18 +130,18 @@
                         @endforeach
                     </ul>
                 @else
-                    <div class="px-8 py-8 text-sm text-gray-400">
+                    <div class="px-4 py-2 text-sm text-gray-400">
                         Nessuna caratteristica definita. Aggiungine una qui sotto.
                     </div>
                 @endif
 
                 {{-- Form aggiungi nuova caratteristica --}}
-                <div class="px-8 py-8 border-t border-gray-100 bg-gray-50 rounded-b-lg">
-                    <h4 class="text-sm font-semibold text-gray-700 mb-4">Aggiungi caratteristica</h4>
+                <div class="px-4 py-4 border-t border-gray-100 bg-gray-50 rounded-b-lg">
+                    <h4 class="text-sm font-semibold text-gray-700 mb-2">Aggiungi caratteristica</h4>
                     <form method="POST" action="{{ route('collection-attributes.store', $collection) }}"
                         onkeydown="return event.key !== 'Enter'">
                         @csrf
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-2">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1">Nome *</label>
                                 <input type="text" name="name" placeholder="Es. Prezzo, Editore, Data acquisto…"
