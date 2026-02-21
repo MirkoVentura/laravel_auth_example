@@ -160,7 +160,7 @@
                                 <span class="text-sm text-gray-600">Campo obbligatorio</span>
                             </label>
                             <button type="submit"
-                                class="px-5 py-2 bg-emerald-600 text-white rounded-lg text-sm hover:bg-emerald-700 font-medium">
+                                class="px-5 py-2 bg-emerald-600 text-indingo-600 rounded-lg text-sm hover:bg-emerald-700 font-medium">
                                 + Aggiungi
                             </button>
                         </div>
