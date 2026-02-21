@@ -30,13 +30,13 @@ class CollectionController extends Controller
             'description' => 'nullable|string',
         ]);
 
-        Collection::create([
+        $collection = Collection::create([
             'user_id' => Auth::id(),
             'name' => $validated['name'],
             'description' => $validated['description'] ?? null,
         ]);
 
-        return redirect()->route('collections.index')->with('success', 'Collezione creata con successo.');
+        return redirect()->route('collections.edit', $collection)->with('success', 'Collezione creata. Aggiungi ora le caratteristiche personalizzate.');
     }
 
     public function show(Collection $collection)
@@ -56,6 +56,8 @@ class CollectionController extends Controller
     public function edit(Collection $collection)
     {
         $this->authorizeOwner($collection);
+
+        $collection->load('attributes');
 
         return view('collections.edit', compact('collection'));
     }

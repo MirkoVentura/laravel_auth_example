@@ -25,6 +25,10 @@
                         @error('description') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
                     </div>
 
+                    <div class="mb-8 p-4 bg-indigo-50 border border-indigo-100 rounded-lg text-sm text-indigo-700">
+                        Dopo aver creato la collezione potrai aggiungere <strong>caratteristiche personalizzate</strong> (es. Prezzo, Editore, Data acquisto…) che compariranno nel form di ogni oggetto.
+                    </div>
+
                     <div class="flex gap-3">
                         <button type="submit" class="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 font-medium">
                             Crea collezione
