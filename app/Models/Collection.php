@@ -19,4 +19,9 @@ class Collection extends Model
     {
         return $this->hasMany(Item::class);
     }
+
+    public function attributes(): HasMany
+    {
+        return $this->hasMany(CollectionAttribute::class)->orderBy('sort_order');
+    }
 }

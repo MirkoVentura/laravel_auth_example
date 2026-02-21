@@ -59,6 +59,38 @@
                     </div>
                 </dl>
 
+                {{-- CARATTERISTICHE PERSONALIZZATE --}}
+                @php $attrMap = $item->itemAttributes->keyBy(fn($a) => $a->definition?->key); @endphp
+                @if ($item->collection->attributes->isNotEmpty())
+                    <div class="mt-6 border-t border-gray-100 pt-6">
+                        <h4 class="text-sm font-semibold text-gray-500 mb-3 uppercase tracking-wide">Caratteristiche</h4>
+                        <dl class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            @foreach ($item->collection->attributes as $attr)
+                                <div>
+                                    <dt class="text-sm font-medium text-gray-500">{{ $attr->name }}</dt>
+                                    <dd class="mt-1 text-gray-800">
+                                        @if ($attrMap->has($attr->key) && $attrMap[$attr->key]->value !== null && $attrMap[$attr->key]->value !== '')
+                                            @if ($attr->type === 'boolean')
+                                                <span class="{{ $attrMap[$attr->key]->value ? 'text-emerald-600' : 'text-gray-400' }}">
+                                                    {{ $attrMap[$attr->key]->value ? 'Sì' : 'No' }}
+                                                </span>
+                                            @elseif ($attr->type === 'url')
+                                                <a href="{{ $attrMap[$attr->key]->value }}" target="_blank" class="text-indigo-600 hover:underline break-all">
+                                                    {{ $attrMap[$attr->key]->value }}
+                                                </a>
+                                            @else
+                                                {{ $attrMap[$attr->key]->value }}
+                                            @endif
+                                        @else
+                                            <span class="text-gray-300">—</span>
+                                        @endif
+                                    </dd>
+                                </div>
+                            @endforeach
+                        </dl>
+                    </div>
+                @endif
+
                 @if ($item->tags->isNotEmpty())
                     <div class="mt-6">
                         <dt class="text-sm font-medium text-gray-500 mb-2">Etichette</dt>

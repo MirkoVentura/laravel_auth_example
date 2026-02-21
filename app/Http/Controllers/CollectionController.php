@@ -43,8 +43,10 @@ class CollectionController extends Controller
     {
         $this->authorizeOwner($collection);
 
+        $collection->load('attributes');
+
         $items = $collection->items()
-            ->with(['location', 'tags'])
+            ->with(['location', 'tags', 'itemAttributes.definition'])
             ->orderBy('name')
             ->get();
 

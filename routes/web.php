@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CollectionAttributeController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LocationController;
@@ -22,6 +23,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('collections', CollectionController::class);
+    // Gestione attributi di una collezione
+    Route::post('collections/{collection}/attributes', [CollectionAttributeController::class, 'store'])->name('collection-attributes.store');
+    Route::patch('collections/{collection}/attributes/{attribute}', [CollectionAttributeController::class, 'update'])->name('collection-attributes.update');
+    Route::delete('collections/{collection}/attributes/{attribute}', [CollectionAttributeController::class, 'destroy'])->name('collection-attributes.destroy');
+
     Route::resource('locations', LocationController::class);
     Route::resource('tags', TagController::class);
     Route::resource('items', ItemController::class);
